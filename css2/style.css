@@ -1,0 +1,135 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #191919;
+    padding: 40px 0;
+    /* remove if not bounding width */
+    width: 400px;
+}
+
+
+/* this is the primitive that helps us build the snake body */
+.snake .sc {
+    width: 70px;
+    height: 220px;
+    border: 5px solid #E08027;
+    border-radius: 70px;
+    position: relative;
+
+}
+
+.snake .sc::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 190px;
+    border: 5px solid #E08027;
+    border-radius: 40px;
+    z-index: 1;
+}
+
+/* generic snake body link */
+.snake .link {
+    float: left;
+    height: 150px;
+    overflow: hidden;
+    margin-left: -20px;
+}
+
+.snake .link.bottom {
+    margin-top: 150px;
+    height: 70px;
+}
+
+.snake .link.bottom .sc {
+    margin-top: -150px;
+}
+
+/* tail */
+.snake .tail {
+    float: left;
+    height: 50px;
+    overflow: hidden;
+    margin-top: 70px;
+    width: 35px;
+}
+
+.snake .tail .sc {
+    margin-top: -170px;
+    margin-left: -35px;
+}
+
+
+/* first link special case */
+.snake .link.first {
+    height: 70px;
+}
+
+.snake .link.first + .link.bottom {
+    margin-top: 70px;
+    height: 150px;
+}
+
+.snake .link.first + .link.bottom .sc{
+    margin-top: -70px;
+}
+
+
+
+/* head */
+.snake .head-container {
+    float: left;
+    margin-left: -20px;
+    margin-top: 100px;
+}
+
+.snake .head-link {
+    height: 50px;
+    overflow: hidden;
+    width: 51px;
+    float: left;
+}
+
+.snake .head-link .sc{
+    border-top-right-radius: 0;
+}
+
+.snake .head-link .sc::before{
+    width: 41px;
+    border-top-right-radius: 0;
+}
+
+.snake .head-container .head {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: #E08027;
+    border-radius: 20px 30px 30px 20px;
+    float: left;
+    margin-top: -5px;
+    margin-left: -1px;
+}
+
+.snake .head-container .head .eye {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #191919;
+    margin-left: 30px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+.clear {
+    clear: both;
+}

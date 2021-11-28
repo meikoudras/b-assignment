@@ -1,0 +1,65 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #998235;
+    padding: 75px 125px;
+    /* remove this if container width does not need to be bounded */
+    width: 150px;
+}
+
+.bee {
+    position: relative;
+}
+
+.bee .wings {
+    clear: both;
+}
+
+.bee .wing {
+    width: 75px;
+    height: 75px;
+    background-color: #FFF;
+    float: left;
+    border-radius: 37.5px;
+    border-bottom-right-radius: 0;
+}
+
+.bee .wing.right {
+    border-radius: 37.5px;
+    border-bottom-left-radius: 0;
+}
+
+.bee .body {
+    position: relative;
+    width: 150px;
+    height: 75px;
+    background-color: #EFF33C;
+    border-radius: 37.5px;
+    clear: both;
+    overflow: hidden;
+}
+
+.bee .body .stripes {
+    height: 100%;
+}
+
+.bee .body .stripes .stripe {
+    width: 25px;
+    background-color: #191919;
+    margin-right: 10px;
+    height: 100%;
+    float: left;
+}
+
+.bee .body .eye {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #191919;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
