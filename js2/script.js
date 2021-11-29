@@ -75,7 +75,45 @@ function renderRows(body, data, index, step) {
             break;
         }
     }
-} 
+}
+
+var lastScrollX = 0;
+var lastScrollY = 0;
+var ticking = false;
+
+function handleScroll(el, scrollX, scrollY, offsetLeft, offsetTop, table, height) {
+  
+  if(scrollY > offsetTop) {
+    el.className = "fixed"    
+    el.style.left = (offsetLeft-scrollX)+'px';
+    table.style['margin-top'] = height+'px';
+
+  } else {
+    el.className = ""       
+    el.style.left = 0;
+    table.style['margin-top'] = 0;
+  }
+}
+
+function stickyHeader(el, table, columnCount) {
+    var boundingRect = el.getBoundingClientRect()
+    table.className = " data-table";
+    table.style.width = (columnCount * 160) + 'px';
+    document.addEventListener('scroll', function(e) {
+        lastScrollX = document.documentElement.scrollLeft;
+        lastScrollY = document.documentElement.scrollTop;
+    
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+            handleScroll(el, lastScrollX, lastScrollY, boundingRect.left, boundingRect.top, table, boundingRect.height);
+            ticking = false;
+        });
+    
+        ticking = true;
+      }
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", function() {
     var table = document.querySelector('#loans');
@@ -95,6 +133,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         showMore.onclick = show;
         showMoreBottom.onclick = show;
+        if (!(typeof CSS !== 'undefined' && CSS.supports && CSS.supports("position", "sticky"))) {
+            stickyHeader(head, table, headerColumns.length);
+        }
     });
 
     var elements = document.querySelectorAll('thead');
