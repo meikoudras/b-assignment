@@ -1,6 +1,8 @@
 html,body {
     height: 100%;
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .image{
@@ -9,6 +11,9 @@ html,body {
     height: 100vh;
     max-width: 410px;
     max-height: 586px;
+}
+
+.no-webp .image, .no-js .image{
     background:url('char.png') no-repeat top left;
     background-size: contain;
 }
@@ -21,16 +26,10 @@ html,body {
     }
 } */
 
-
-.webp .image {
-    background:url('char.webp') no-repeat top left;
-    background-size: contain;
-}
-
 @media (-webkit-min-device-pixel-ratio: 2), 
 (min-resolution: 192dpi) { 
 
-    .image{
+    .no-webp .image{
         background:url('char@2x.png') no-repeat top left;
         background-size: contain;
     }
@@ -39,8 +38,20 @@ html,body {
 @media (-webkit-min-device-pixel-ratio: 3), 
 (min-resolution: 288dpi) { 
 
-    .image{
+    .no-webp .image{
         background:url('char@3x.png') no-repeat top left;
         background-size: contain;
     }
+}
+
+.webp .image {
+    background: -webkit-image-set(
+        url("char.webp") 1x,
+        url("char@2x.webp") 2x,
+        url("char@3x.webp") 3x) no-repeat top left;
+    background: image-set(
+        url("char.webp") 1x,
+        url("char@2x.webp") 2x,
+        url("char@3x.webp") 3x) no-repeat top left;
+    background-size: contain;
 }
